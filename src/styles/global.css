@@ -29,25 +29,9 @@
 }
 
 @font-face {
-  font-family: 'Roslindale Display Condensed';
-  src: url('/fonts/Roslindale-DisplayCondensedLight-Testing.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roslindale Display Condensed';
-  src: url('/fonts/Roslindale-DisplayCondensedRegular-Testing.ttf') format('truetype');
+  font-family: 'Cooper Black';
+  src: url('/fonts/COOPBL.ttf') format('truetype');
   font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roslindale Display Condensed';
-  src: url('/fonts/Roslindale-DisplayCondensedBold-Testing.ttf') format('truetype');
-  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -66,7 +50,7 @@
   --color-yellow-deep: #e8a6e4;
 
   /* Fonts */
-  --font-display: 'Roslindale Display Condensed', Georgia, 'Times New Roman', serif;
+  --font-display: 'Cooper Black', Georgia, 'Times New Roman', serif;
   --font-body: 'Suisse Intl', helvetica, arial, sans-serif;
 
   /* Easing */
@@ -98,8 +82,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roslindale Display Condensed', Georgia, 'Times New Roman', serif;
-    font-weight: 300;
+    font-family: 'Cooper Black', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
     line-height: 0.95;
     letter-spacing: -0.01em;
   }
@@ -108,8 +92,8 @@
 @layer components {
   /* Editorial oversized display heading */
   .display {
-    font-family: 'Roslindale Display Condensed', Georgia, 'Times New Roman', serif;
-    font-weight: 300;
+    font-family: 'Cooper Black', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
     line-height: 0.92;
     letter-spacing: -0.01em;
   }
@@ -125,6 +109,7 @@
   /* Pill button base */
   .btn {
     display: inline-flex;
+    width: auto;
     align-items: center;
     gap: 0.6rem;
     border-radius: 9999px;

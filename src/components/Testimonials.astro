@@ -1,0 +1,77 @@
+---
+const press = [
+  "Joy FM",
+  "Accra Eats",
+  "Citi News",
+  "Ghana Foodie",
+  "Sweet Spot GH",
+  "Pulse Ghana",
+];
+
+const reviews = [
+  {
+    quote:
+      "The most beautiful cake I've had in Accra — and it tasted even better than it looked. Madge Treats is now our Sunday treat.",
+    name: "Ama Owusu",
+    role: "East Legon",
+  },
+  {
+    quote:
+      "Ordered a birthday cake over WhatsApp — easy, fast, and absolutely gorgeous. The kids were thrilled.",
+    name: "Kwesi Mensah",
+    role: "Spintex",
+  },
+  {
+    quote:
+      "Their cookies sell out for a reason. Crisp, chewy and made fresh every single morning.",
+    name: "Nana Adjoa",
+    role: "Osu",
+  },
+];
+---
+
+<section data-nav="light" class="bg-cream text-brown">
+  <!-- Press marquee -->
+  <div class="border-y border-brown/10 py-6 overflow-hidden">
+    <div class="marquee-track">
+      {
+        [...press, ...press].map((p) => (
+          <span class="mx-10 font-display text-2xl lg:text-3xl text-brown/40">
+            {p}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="mx-auto max-w-[1400px] px-6 lg:px-10 py-24 lg:py-32">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow text-brown/50 mb-5">Loved across Accra</p>
+      <h2 class="display text-[clamp(2.4rem,6vw,5rem)]">
+        What our customers say.
+      </h2>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-3">
+      {
+        reviews.map((r, i) => (
+          <figure
+            class="rounded-2xl border border-brown/10 bg-white/40 p-8 flex flex-col gap-6"
+            data-aos="fade-up"
+            data-aos-delay={i * 120}
+          >
+            <div class="text-yellow-deep text-xl tracking-widest">★★★★★</div>
+            <blockquote class="text-lg leading-relaxed text-brown/85">
+              “{r.quote}”
+            </blockquote>
+            <figcaption class="mt-auto">
+              <p class="font-medium">{r.name}</p>
+              <p class="text-sm text-brown/55">{r.role}</p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

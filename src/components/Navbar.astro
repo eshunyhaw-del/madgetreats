@@ -1,0 +1,276 @@
+---
+const links = [
+  { label: "Home", href: "/" },
+  { label: "Menu", href: "/menu" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const whatsapp = "https://wa.me/233596045710?text=Hi%20Madge%20Treats!%20I'd%20love%20to%20place%20an%20order.";
+
+const socials = [
+  { label: "Instagram", href: "https://instagram.com" },
+  { label: "WhatsApp", href: "https://wa.me/233596045710" },
+];
+---
+
+<header id="navbar" class="fixed top-0 inset-x-0 z-50">
+  <nav class="mx-auto max-w-[1400px] px-6 lg:px-10 h-20 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" aria-label="Madge Treats — home" class="inline-flex items-center">
+      <span class="logo-pill">
+        <img
+          src="/img/MADGE-TREAT-WEB-LOGO-229-X-62-PIXELS-PRIMARY.png"
+          alt="Madge Treats"
+          width="229"
+          height="62"
+          class="site-logo"
+        />
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-9">
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} class="nav-link text-sm font-medium tracking-wide relative group">
+              {l.label}
+              <span class="absolute -bottom-1 left-0 h-px w-0 bg-yellow transition-all duration-300 group-hover:w-full" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- CTA + burger -->
+    <div class="flex items-center gap-4">
+      <a
+        href={whatsapp}
+        target="_blank"
+        rel="noopener"
+        data-no-transition
+        class="hidden sm:inline-flex btn btn-yellow text-sm py-2.5 px-5"
+      >
+        Order now
+      </a>
+      <!-- Hamburger (closed state) — three plain cream lines -->
+      <button id="navBurger" aria-label="Open menu" aria-expanded="false" class="burger md:hidden">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+          <line x1="4" y1="10" x2="26" y2="10" stroke="currentColor" stroke-width="2" />
+          <line x1="4" y1="16" x2="26" y2="16" stroke="currentColor" stroke-width="2" />
+          <line x1="4" y1="22" x2="26" y2="22" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Full-screen mobile overlay (savor.it style) -->
+  <div id="mobileMenu" class="mobile-overlay md:hidden" aria-hidden="true">
+    <!-- Top bar -->
+    <div class="mobile-overlay__top">
+      <a href="/" aria-label="Madge Treats — home" class="inline-flex">
+        <img
+          src="/img/MADGE-TREAT-WEB-LOGO-229-X-62-PIXELS-PRIMARY.png"
+          alt="Madge Treats"
+          width="229"
+          height="62"
+          class="overlay-logo"
+        />
+      </a>
+      <button id="navClose" class="mobile-overlay__close" aria-label="Close menu">Close</button>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="mobile-overlay__nav">
+      {links.map((l) => (
+        <a href={l.href} class="mobile-overlay__link">{l.label}</a>
+      ))}
+    </nav>
+
+    <!-- Bottom: socials + contact -->
+    <div class="mobile-overlay__bottom">
+      <div class="mobile-overlay__socials">
+        {socials.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener" data-no-transition class="mobile-overlay__social">
+            {s.label}
+          </a>
+        ))}
+      </div>
+      <a href={whatsapp} target="_blank" rel="noopener" data-no-transition class="mobile-overlay__contact">
+        WhatsApp · 059 604 5710
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Navbar — always solid deep brown, never transparent */
+  #navbar {
+    background-color: #370808;
+    color: #FFF9EB;
+  }
+
+  /* Logo — always visible on the dark bar, on a cream pill */
+  .site-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .site-logo { height: 32px; }
+  }
+  .logo-pill {
+    display: inline-flex;
+    align-items: center;
+    background-color: #FFF9EB;
+    border-radius: 9999px;
+    padding: 6px 14px;
+  }
+
+  /* Desktop nav links */
+  .nav-link {
+    color: #FFF9EB;
+    font-family: 'Suisse Intl', helvetica, arial, sans-serif;
+    transition: color 0.3s ease;
+  }
+  .nav-link:hover { color: #F8E47D; }
+
+  /* Hamburger button (closed) — plain cream lines, no box */
+  .burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #FFF9EB;
+    cursor: pointer;
+  }
+  @media (min-width: 768px) {
+    .burger { display: none; }
+  }
+
+  /* ── Full-screen yellow overlay ── */
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: #FFC9FB;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    /* hidden by default, fades + slides in */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-16px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  }
+  .mobile-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Top bar */
+  .mobile-overlay__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .overlay-logo {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+  .mobile-overlay__close {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #370808;
+    font-family: 'Suisse Intl', helvetica, arial, sans-serif;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-overlay__close:hover { opacity: 0.6; }
+
+  /* Nav links — huge editorial type */
+  .mobile-overlay__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .mobile-overlay__link {
+    font-family: 'Roslindale Display Condensed', Georgia, 'Times New Roman', serif;
+    font-weight: 300;
+    font-size: min(12vw, 7rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #370808;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-overlay__link:hover { opacity: 0.6; }
+
+  /* Bottom — socials + contact */
+  .mobile-overlay__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .mobile-overlay__socials {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mobile-overlay__social {
+    font-family: 'Suisse Intl', helvetica, arial, sans-serif;
+    font-size: 1.2rem;
+    color: #370808;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-overlay__social:hover { opacity: 0.6; }
+  .mobile-overlay__contact {
+    font-family: 'Suisse Intl', helvetica, arial, sans-serif;
+    font-size: 0.95rem;
+    color: #370808;
+    opacity: 0.7;
+    text-decoration: none;
+  }
+</style>
+
+<script>
+  const burger = document.getElementById("navBurger");
+  const closeBtn = document.getElementById("navClose");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  const setOpen = (open: boolean) => {
+    mobileMenu?.classList.toggle("is-open", open);
+    mobileMenu?.setAttribute("aria-hidden", String(!open));
+    burger?.setAttribute("aria-expanded", String(open));
+    // Lock body scroll while the overlay is open
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+
+  burger?.addEventListener("click", () => setOpen(true));
+  closeBtn?.addEventListener("click", () => setOpen(false));
+
+  // Close when any nav link is tapped
+  mobileMenu?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => setOpen(false))
+  );
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+</script>

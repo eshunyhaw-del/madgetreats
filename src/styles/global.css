@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* ===========================================================
+   Local font faces
+   =========================================================== */
+
+@font-face {
+  font-family: 'Suisse Intl';
+  src: url('/fonts/SuisseIntlTrial-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Suisse Intl';
+  src: url('/fonts/SuisseIntlTrial-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Suisse Intl';
+  src: url('/fonts/SuisseIntlTrial-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roslindale Display Condensed';
+  src: url('/fonts/Roslindale-DisplayCondensedLight-Testing.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roslindale Display Condensed';
+  src: url('/fonts/Roslindale-DisplayCondensedRegular-Testing.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roslindale Display Condensed';
+  src: url('/fonts/Roslindale-DisplayCondensedBold-Testing.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===========================================================
+   Madge Treats — Design System
+   Inspired by savor.it. Warm, editorial, cinematic.
+   =========================================================== */
+
+@theme {
+  /* Brand palette */
+  --color-cream: #FFF9EB;
+  --color-brown: #370808;
+  --color-brown-soft: #4a1410;
+  --color-yellow: #FFC9FB;
+  --color-yellow-deep: #e8a6e4;
+
+  /* Fonts */
+  --font-display: 'Roslindale Display Condensed', Georgia, 'Times New Roman', serif;
+  --font-body: 'Suisse Intl', helvetica, arial, sans-serif;
+
+  /* Easing */
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@layer base {
+  :root {
+    --nav-fg: var(--color-brown);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-brown);
+    font-family: 'Suisse Intl', helvetica, arial, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-yellow);
+    color: var(--color-brown);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roslindale Display Condensed', Georgia, 'Times New Roman', serif;
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Editorial oversized display heading */
+  .display {
+    font-family: 'Roslindale Display Condensed', Georgia, 'Times New Roman', serif;
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  /* Pill button base */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-radius: 9999px;
+    padding: 0.95rem 1.8rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    transition: transform 0.4s var(--ease-curtain),
+                background-color 0.4s ease,
+                color 0.4s ease;
+    will-change: transform;
+  }
+  .btn:hover { transform: translateY(-3px); }
+
+  .btn-yellow {
+    background-color: var(--color-yellow);
+    color: var(--color-brown);
+  }
+  .btn-yellow:hover { background-color: var(--color-yellow-deep); }
+
+  .btn-brown {
+    background-color: var(--color-brown);
+    color: var(--color-cream);
+  }
+  .btn-outline {
+    border: 1px solid currentColor;
+    background: transparent;
+  }
+}
+
+/* ============================================================
+   Page transition — yellow curtain overlay
+   ============================================================ */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: var(--color-yellow);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.curtain__logo {
+  width: clamp(180px, 34vw, 340px);
+  height: auto;
+  opacity: 0;
+}
+
+/* Curtain leaving (entering page): start covered -> reveal upward */
+.curtain.is-enter {
+  transform: scaleY(1);
+  transform-origin: top;
+  animation: curtain-up 0.9s var(--ease-curtain) forwards;
+}
+.curtain.is-enter .curtain__logo { animation: logo-fade 0.7s ease forwards; }
+
+/* Curtain leaving page: cover from bottom up */
+.curtain.is-leave {
+  transform-origin: bottom;
+  animation: curtain-down 0.7s var(--ease-curtain) forwards;
+}
+
+@keyframes curtain-up {
+  0%   { transform: scaleY(1); transform-origin: top; }
+  100% { transform: scaleY(0); transform-origin: top; }
+}
+@keyframes curtain-down {
+  0%   { transform: scaleY(0); transform-origin: bottom; }
+  100% { transform: scaleY(1); transform-origin: bottom; }
+}
+@keyframes logo-fade {
+  0%   { opacity: 0; }
+  40%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ============================================================
+   Story section — scroll-driven line reveal
+   ============================================================ */
+.story-line {
+  transition: color 0.5s ease, opacity 0.5s ease;
+}
+
+/* ============================================================
+   AOS-friendly custom keyframe for marquee
+   ============================================================ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+
+/* Subtle image zoom on hover for product cards */
+.product-media img {
+  transition: transform 0.9s var(--ease-curtain);
+}
+.product-card:hover .product-media img {
+  transform: scale(1.06);
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

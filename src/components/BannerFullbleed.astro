@@ -1,0 +1,31 @@
+---
+interface Props {
+  text?: string;
+  image?: string;
+  alt?: string;
+}
+
+const {
+  text = "The future tastes delicious",
+  image = "https://images.pexels.com/photos/2067396/pexels-photo-2067396.jpeg?auto=compress&cs=tinysrgb&w=1920",
+  alt = "Freshly baked cake from Madge Treats",
+} = Astro.props;
+---
+
+<section
+  data-nav="dark"
+  class="relative h-[90svh] min-h-[560px] w-full overflow-hidden flex items-center justify-center text-cream"
+>
+  <div class="absolute inset-0">
+    <img src={image} alt={alt} class="h-full w-full object-cover" loading="lazy" />
+    <div class="absolute inset-0" style="background:rgba(55,8,8,0.6);"></div>
+  </div>
+
+  <h2
+    class="relative display text-center text-[clamp(2.6rem,10vw,9rem)] px-6 max-w-[14ch]"
+    data-aos="zoom-out"
+    data-aos-duration="1100"
+  >
+    {text}
+  </h2>
+</section>

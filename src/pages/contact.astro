@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+
+const details = [
+  { label: "WhatsApp / Call", value: "059 604 5710", href: "https://wa.me/233596045710" },
+  { label: "Email", value: "hello@madgetreats.com", href: "mailto:hello@madgetreats.com" },
+  { label: "Address", value: "MQ63+3JW, Taifa, Accra" },
+  { label: "Hours", value: "Mon – Sat · 9am – 5pm (Sun closed)" },
+];
+
+const socials = [
+  { label: "Instagram", href: "https://instagram.com" },
+  { label: "WhatsApp", href: "https://wa.me/233596045710" },
+];
+---
+
+<Layout
+  title="Contact — Madge Treats"
+  description="Get in touch with Madge Treats in Taifa, Accra. Order cookies and cakes over WhatsApp on 059 604 5710."
+>
+  <header data-nav="dark" class="bg-brown text-cream pt-40 pb-20 lg:pt-52 lg:pb-28">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <p class="eyebrow text-yellow mb-6" data-aos="fade-up">Get in touch</p>
+      <h1 class="display text-[clamp(3rem,11vw,9rem)] max-w-[16ch]" data-aos="fade-up" data-aos-delay="100">
+        Let’s make something sweet together.
+      </h1>
+      <p class="mt-8 max-w-xl text-lg text-cream/70" data-aos="fade-up" data-aos-delay="200">
+        Have a special occasion coming up? Want to know our prices? We’re just a WhatsApp message away.
+      </p>
+    </div>
+  </header>
+
+  <section data-nav="light" class="bg-cream text-brown">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28 grid gap-16 lg:grid-cols-2">
+      <!-- Details -->
+      <div data-aos="fade-up">
+        <h2 class="display text-[clamp(2rem,5vw,3.5rem)] mb-10">Reach us</h2>
+        <dl class="divide-y divide-brown/10 border-y border-brown/10">
+          {
+            details.map((d) => (
+              <div class="flex items-baseline justify-between gap-6 py-5">
+                <dt class="eyebrow text-brown/45">{d.label}</dt>
+                <dd class="text-right text-lg">
+                  {d.href ? (
+                    <a
+                      href={d.href}
+                      target="_blank"
+                      rel="noopener"
+                      data-no-transition
+                      class="hover:text-yellow-deep transition-colors"
+                    >
+                      {d.value}
+                    </a>
+                  ) : (
+                    d.value
+                  )}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          {
+            socials.map((s) => (
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener"
+                data-no-transition
+                class="btn btn-outline text-sm py-2.5 px-5"
+              >
+                {s.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Order CTA card -->
+      <div
+        class="rounded-3xl bg-brown text-cream p-10 lg:p-14 flex flex-col justify-center"
+        data-aos="fade-up"
+        data-aos-delay="120"
+      >
+        <h2 class="display text-[clamp(2rem,5vw,3.5rem)] max-w-[14ch]">
+          Ready to order?
+        </h2>
+        <p class="mt-5 text-cream/70 leading-relaxed max-w-sm">
+          Tell us what you’d love, when you need it, and where to send it — we’ll handle the rest.
+        </p>
+        <p class="mt-6 text-cream/50 text-sm">Based in Ghana 🇬🇭</p>
+        <div class="mt-8">
+          <WhatsAppButton
+            message="Hi Madge Treats! I’d like to place an order. Can you help me?"
+            label="Chat with us on WhatsApp"
+            variant="yellow"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

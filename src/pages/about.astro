@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BannerFullbleed from "../components/BannerFullbleed.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+
+const values = [
+  {
+    title: "Fresh daily",
+    body: "Nothing sits overnight. We bake in small batches every morning so every bite is at its best.",
+  },
+  {
+    title: "Real ingredients",
+    body: "Proper butter, good flour, real chocolate. No shortcuts, no compromise — ever.",
+  },
+  {
+    title: "Made with love",
+    body: "Every order is personal. We treat your celebration like it’s our own family’s.",
+  },
+];
+---
+
+<Layout
+  title="About — Madge Treats"
+  description="The Madge Treats story — handcrafted cookies and cakes baked with love in Ghana for every occasion worth celebrating."
+>
+  <!-- Header -->
+  <header data-nav="dark" class="bg-brown text-cream pt-40 pb-20 lg:pt-52 lg:pb-28">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <p class="eyebrow text-yellow mb-6" data-aos="fade-up">Born in Ghana. Baked with love.</p>
+      <h1 class="display text-[clamp(3rem,11vw,9rem)] max-w-[14ch]" data-aos="fade-up" data-aos-delay="100">
+        We don't just bake. We celebrate.
+      </h1>
+    </div>
+  </header>
+
+  <!-- Intro split -->
+  <section data-nav="light" class="bg-cream text-brown">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28 grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div data-aos="fade-up" class="overflow-hidden rounded-3xl">
+        <img
+          src="https://images.pexels.com/photos/3992131/pexels-photo-3992131.jpeg?auto=compress&cs=tinysrgb&w=1920"
+          alt="Baker decorating a cake at Madge Treats"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div data-aos="fade-up" data-aos-delay="120">
+        <p class="text-2xl lg:text-3xl font-display leading-snug">
+          Madge Treats was born from a simple belief — that every occasion deserves something beautiful and delicious.
+        </p>
+        <p class="mt-6 text-brown/65 leading-relaxed">
+          Based in Ghana, we craft cookies, cakes, and sweet memories, one bake at a time. Every order is personal. Every treat is made by hand. Every bite is made with love.
+        </p>
+        <p class="mt-8 font-medium text-brown">Ready to make your moment sweet?</p>
+        <div class="mt-5">
+          <WhatsAppButton
+            message="Hi Madge Treats! I’d love to place an order."
+            label="Order on WhatsApp"
+            variant="brown"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <BannerFullbleed
+    text="Made fresh, never rushed"
+    image="https://images.pexels.com/photos/1028714/pexels-photo-1028714.jpeg?auto=compress&cs=tinysrgb&w=1920"
+  />
+
+  <!-- Values -->
+  <section data-nav="light" class="bg-cream text-brown">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10 py-24 lg:py-32">
+      <div class="max-w-2xl mb-16" data-aos="fade-up">
+        <p class="eyebrow text-brown/50 mb-5">What we stand for</p>
+        <h2 class="display text-[clamp(2.2rem,6vw,5rem)]">
+          Three things we never skip.
+        </h2>
+      </div>
+      <div class="grid gap-10 md:grid-cols-3">
+        {
+          values.map((v, i) => (
+            <div data-aos="fade-up" data-aos-delay={i * 120}>
+              <span class="display text-5xl text-yellow-deep">0{i + 1}</span>
+              <h3 class="font-display text-2xl mt-5">{v.title}</h3>
+              <p class="mt-3 text-brown/65 leading-relaxed">{v.body}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-20 flex justify-center" data-aos="fade-up">
+        <WhatsAppButton
+          message="Hi Madge Treats! I'd love to place an order."
+          label="Order on WhatsApp"
+          variant="brown"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>

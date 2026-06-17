@@ -1,0 +1,55 @@
+---
+const lines = [
+  "From flour",
+  "to butter",
+  "We bake with love",
+  "Without compromise",
+  "Fresh every day",
+  "Just for you",
+];
+---
+
+<section data-nav="dark" class="relative bg-brown text-cream">
+  <div class="mx-auto max-w-[1400px] px-6 lg:px-10 py-[22vh]">
+    <p class="eyebrow text-yellow mb-12">Our craft</p>
+    <div class="story" id="story">
+      {
+        lines.map((line) => (
+          <span class="story-line block display text-[clamp(2.2rem,7vw,6rem)] leading-[1.05]">
+            {line}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Each line starts dim, brightens as it enters the reading zone. */
+  .story-line {
+    color: color-mix(in srgb, var(--color-cream) 18%, transparent);
+  }
+  .story-line.is-active {
+    color: var(--color-cream);
+  }
+  .story-line.is-active :global(.accent),
+  .story-line.is-active {
+    color: var(--color-cream);
+  }
+</style>
+
+<script>
+  const storyLines = document.querySelectorAll<HTMLElement>("#story .story-line");
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("is-active", entry.isIntersecting);
+      });
+    },
+    // Active while the line sits in the central reading band.
+    { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
+  );
+
+  storyLines.forEach((l) => io.observe(l));
+</script>

@@ -1,0 +1,109 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Madge Treats — Cakes too pretty to eat, too delicious not to",
+  description = "Handcrafted cookies and cakes from the heart of Ghana. Baked fresh daily with love in Taifa, Accra.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/img/MADGE-TREAT-WEB-LOGO-229-X-62-PIXELS-PRIMARY.png" />
+    <link rel="apple-touch-icon" href="/img/MADGE-TREAT-WEB-LOGO-229-X-62-PIXELS-PRIMARY.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <title>{title}</title>
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  </head>
+
+  <body>
+    <!-- Yellow curtain page transition -->
+    <div id="curtain" class="curtain">
+      <img
+        class="curtain__logo"
+        src="/img/MADGE-TREAT-WEB-LOGO-229-X-62-PIXELS-PRIMARY.png"
+        alt="Madge Treats"
+        width="229"
+        height="62"
+      />
+    </div>
+
+    <Navbar />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!-- AOS init -->
+    <script>
+      import AOS from "aos";
+      AOS.init({
+        duration: 850,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 80,
+      });
+    </script>
+
+    <!-- Page transition curtain controller -->
+    <script>
+      const curtain = document.getElementById("curtain");
+
+      // Play the reveal (curtain lifts up) on load.
+      function playEnter() {
+        if (!curtain) return;
+        curtain.classList.remove("is-leave");
+        curtain.classList.add("is-enter");
+        curtain.addEventListener(
+          "animationend",
+          () => curtain.classList.remove("is-enter"),
+          { once: true }
+        );
+      }
+
+      window.addEventListener("pageshow", playEnter);
+
+      // Intercept internal nav links to play the leaving curtain.
+      document.querySelectorAll('a[href^="/"]').forEach((link) => {
+        const a = link as HTMLAnchorElement;
+        // Skip hash links and new-tab links
+        if (
+          a.target === "_blank" ||
+          a.getAttribute("href")?.startsWith("/#") ||
+          a.hasAttribute("data-no-transition")
+        )
+          return;
+
+        a.addEventListener("click", (e) => {
+          const href = a.getAttribute("href");
+          if (!href || href.startsWith("#")) return;
+          // Same page? let it scroll.
+          if (href === window.location.pathname) return;
+
+          e.preventDefault();
+          curtain?.classList.remove("is-enter");
+          curtain?.classList.add("is-leave");
+          setTimeout(() => (window.location.href = href), 650);
+        });
+      });
+    </script>
+  </body>
+</html>

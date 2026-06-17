@@ -1,0 +1,65 @@
+---
+const image =
+  "https://images.pexels.com/photos/7328336/pexels-photo-7328336.jpeg?auto=compress&cs=tinysrgb&w=1920";
+const whatsapp =
+  "https://wa.me/233596045710?text=Hi%20Madge%20Treats!%20I'd%20love%20to%20place%20an%20order.";
+---
+
+<section
+  data-nav="dark"
+  class="relative h-[100svh] min-h-[640px] w-full overflow-hidden text-cream"
+>
+  <!-- Background image / video layer -->
+  <div class="absolute inset-0">
+    <img
+      src={image}
+      alt="Freshly baked treats at Madge Treats"
+      class="h-full w-full object-cover scale-105"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Cinematic dark overlay -->
+    <div
+      class="absolute inset-0"
+      style="background:linear-gradient(180deg, rgba(55,8,8,0.55) 0%, rgba(55,8,8,0.25) 35%, rgba(55,8,8,0.85) 100%);"
+    >
+    </div>
+  </div>
+
+  <!-- Eyebrow top-left -->
+  <div class="absolute top-28 left-6 lg:left-10">
+    <span class="eyebrow text-yellow">Bakery · Taifa, Accra</span>
+  </div>
+
+  <!-- Bottom content: heading bottom-left, subtitle bottom-right -->
+  <div
+    class="absolute inset-x-0 bottom-0 px-6 lg:px-10 pb-12 lg:pb-16"
+  >
+    <div class="mx-auto max-w-[1400px] flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+      <!-- Heading bottom-left -->
+      <h1
+        class="display text-[clamp(3.5rem,13vw,11rem)] text-cream"
+        data-aos="fade-up"
+      >
+        Cakes too pretty<br />to eat, too<br />delicious not to.
+      </h1>
+
+      <!-- Subtitle + CTA bottom-right -->
+      <div
+        class="max-w-sm lg:text-right lg:pb-4"
+        data-aos="fade-up"
+        data-aos-delay="150"
+      >
+        <p class="text-lg lg:text-xl font-light text-cream/85 leading-snug">
+          Handcrafted in Ghana, made for every moment worth celebrating.
+        </p>
+        <div class="mt-6 flex lg:justify-end">
+          <a href={whatsapp} target="_blank" rel="noopener" data-no-transition class="btn btn-yellow">
+            Order on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -5,33 +5,37 @@
    =========================================================== */
 
 @font-face {
-  font-family: 'Suisse Intl';
-  src: url('/fonts/SuisseIntlTrial-Regular.otf') format('opentype');
+  font-family: 'Tan Harmoni';
+  src: url('/fonts/TAN-Harmoni-Regular.woff2') format('woff2'),
+       url('/fonts/TAN-Harmoni-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Suisse Intl';
-  src: url('/fonts/SuisseIntlTrial-Medium.otf') format('opentype');
+  font-family: 'Sackers Gothic';
+  src: url('/fonts/Sackers-Gothic-Light.woff2') format('woff2'),
+       url('/fonts/Sackers-Gothic-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sackers Gothic';
+  src: url('/fonts/Sackers-Gothic-Medium.woff2') format('woff2'),
+       url('/fonts/Sackers-Gothic-Medium.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Suisse Intl';
-  src: url('/fonts/SuisseIntlTrial-Semibold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Cooper Black';
-  src: url('/fonts/COOPBL.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'Sackers Gothic';
+  src: url('/fonts/Sackers-Gothic-Heavy.woff2') format('woff2'),
+       url('/fonts/Sackers-Gothic-Heavy.otf') format('opentype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -50,8 +54,8 @@
   --color-yellow-deep: #e8a6e4;
 
   /* Fonts */
-  --font-display: 'Cooper Black', Georgia, 'Times New Roman', serif;
-  --font-body: 'Suisse Intl', helvetica, arial, sans-serif;
+  --font-display: 'Tan Harmoni', Georgia, 'Times New Roman', serif;
+  --font-body: 'Sackers Gothic', helvetica, arial, sans-serif;
 
   /* Easing */
   --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
@@ -71,7 +75,7 @@
   body {
     background-color: var(--color-cream);
     color: var(--color-brown);
-    font-family: 'Suisse Intl', helvetica, arial, sans-serif;
+    font-family: 'Sackers Gothic', helvetica, arial, sans-serif;
     font-weight: 400;
     overflow-x: hidden;
   }
@@ -82,7 +86,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cooper Black', Georgia, 'Times New Roman', serif;
+    font-family: 'Tan Harmoni', Georgia, 'Times New Roman', serif;
     font-weight: 400;
     line-height: 0.95;
     letter-spacing: -0.01em;
@@ -92,7 +96,7 @@
 @layer components {
   /* Editorial oversized display heading */
   .display {
-    font-family: 'Cooper Black', Georgia, 'Times New Roman', serif;
+    font-family: 'Tan Harmoni', Georgia, 'Times New Roman', serif;
     font-weight: 400;
     line-height: 0.92;
     letter-spacing: -0.01em;
